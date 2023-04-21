@@ -1,0 +1,6 @@
+url, name, position, location, url_rec, name_rec, date
+https://www.workatastartup.com/jobs/57964, Prelim, Software Engineer, Remote, https://www.linkedin.com/in/chris-blaser-07517b1a4/, Chris, 2023-04-21
+https://www.workatastartup.com/jobs/52001, Fieldguide, Software Engineer, remote, https://www.linkedin.com/in/john-michael-diveris-98ba44147/, John-Michael Diveris, 2023-04-21
+https://www.workatastartup.com/jobs/55436, Coin Tracker, software Engineer, remote, https://www.linkedin.com/in/clodha/, chandan lodha, 2023-04-21
+https://www.workatastartup.com/jobs/47550, Endla, full stack, remote, https://www.linkedin.com/in/michaelmoore1997/, Michael, 2023-04-21 
+https://www.workatastartup.com/jobs/32074, Bento, Full Stack Engineer, remote, https://www.linkedin.com/in/emilyyidanwang/, Emily, 2023-04-21 
