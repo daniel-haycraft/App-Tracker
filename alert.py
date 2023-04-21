@@ -10,7 +10,7 @@ def email(msg):
     sender_email = os.environ['RECIPIENT_EMAIL']
     sender_password = os.environ['SENDER_PASSWORD']
     recipient_email = os.environ['RECIPIENT_EMAIL']
-    subject = 'Messages'
+    subject = 'Follow Ups'
     body = f'{msg}'
     # Create message container
     msg = MIMEMultipart()
@@ -70,7 +70,6 @@ with open('my_file.txt', 'r') as f:
         notification.notify(title='Linkedin', 
         message='check Email for linkedin Reminders!!!',
         app_name="My Apps")
-    else:
-        print('no one')
+
             
 
