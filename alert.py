@@ -7,9 +7,9 @@ from email.mime.image import MIMEImage
 import os
 def email(msg):
 # Email content
-    sender_email = 'dhcopy1@gmail.com'
+    sender_email = os.environ['RECIPIENT_EMAIL']
     sender_password = os.environ['SENDER_PASSWORD']
-    recipient_email = 'dhcopy1@gmail.com'
+    recipient_email = os.environ['RECIPIENT_EMAIL']
     subject = 'Messages'
     body = f'{msg}'
     # Create message container
