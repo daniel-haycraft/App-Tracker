@@ -4,10 +4,11 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
+import os
 def email(msg):
 # Email content
     sender_email = 'dhcopy1@gmail.com'
-    sender_password = 'ovrriawkuqzrwlwm'
+    sender_password = os.environ['SENDER_PASSWORD']
     recipient_email = 'dhcopy1@gmail.com'
     subject = 'Messages'
     body = f'{msg}'
