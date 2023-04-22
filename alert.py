@@ -67,6 +67,7 @@ def notifi():
             if check_time == tdy:
                 mes +=  f" \n COMPANY: {res['name']}, \n REC URL:{res['url_rec']}, \n NAME REC: {res['name_rec']}, \n APPLICATION URL: {res['url']},\n POSITION: {res['position']} \n "
         if mes:
+            email(mes)
             notification.notify(title='Linkedin', 
             message='Check Email for Linkedin Reminders!!!',
             app_name="My Apps",
