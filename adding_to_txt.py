@@ -54,15 +54,14 @@ def on_submit():
         e3.delete(0, "end")
         f.writelines(e4.get()+', ')
         e4.delete(0, "end")
+
         f.writelines(e5.get()+', ')
-        
         e5.delete(0, "end")
-        f.write('other info')
+
         f.writelines(e6.get()+', ')
-        
         e6.delete(0, "end")
+
         f.writelines(e7.get()+', ' )
-        
         e7.delete(0, "end")
         
         c_date = date.today()
