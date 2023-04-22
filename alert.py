@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import os
+import time
 def email(msg):
 # Email content
     sender_email = os.environ['RECIPIENT_EMAIL']
@@ -36,40 +37,43 @@ def email(msg):
 
     # Disconnect from SMTP server
     smtp_connection.quit()
-
-mes = ''
-tdy = datetime.date.today()
-with open('my_file.txt', 'r') as f:
-    for lines in f:
-        data = [
-        line.strip().split(',')
-        for line in f
-        if line.strip()
-    ]
-        result = [
-        {
-            'url': row[0],
-            'name': row[1],
-            'position': row[2],
-            'location': row[3],
-            'url_rec': row[4],
-            'name_rec': row[5],
-            'date': row[6]
-        }
-        for row in data
+def notifi():
+    mes = ''
+    tdy = datetime.date.today()
+    with open('my_file.txt', 'r') as f:
+        for lines in f:
+            data = [
+            line.strip().split(',')
+            for line in f
+            if line.strip()
         ]
-    for res in result:
-        date_str = res['date'].strip()
-        my_dates = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
-        time_change = datetime.timedelta(days=3)
-        check_time = my_dates + time_change
-        if check_time == tdy:
-            mes +=  f" \n COMPANY: {res['name']}, \n REC URL:{res['url_rec']}, \n NAME REC: {res['name_rec']}, \n APPLICATION URL: {res['url']},\n POSITION: {res['position']} \n "
-    if mes:
-        email(mes)
-        notification.notify(title='Linkedin', 
-        message='check Email for linkedin Reminders!!!',
-        app_name="My Apps")
-
+            result = [
+            {
+                'url': row[0],
+                'name': row[1],
+                'position': row[2],
+                'location': row[3],
+                'url_rec': row[4],
+                'name_rec': row[5],
+                'date': row[6]
+            }
+            for row in data
+            ]
+        for res in result:
+            date_str = res['date'].strip()
+            my_dates = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
+            time_change = datetime.timedelta(days=3)
+            check_time = my_dates + time_change
+            if check_time == tdy:
+                mes +=  f" \n COMPANY: {res['name']}, \n REC URL:{res['url_rec']}, \n NAME REC: {res['name_rec']}, \n APPLICATION URL: {res['url']},\n POSITION: {res['position']} \n "
+        if mes:
+            notification.notify(title='Linkedin', 
+            message='Check Email for Linkedin Reminders!!!',
+            app_name="My Apps",
+            app_icon='icons8-star-wars-naboo-ship-48.icns'
+            )
+            time.sleep(86400)
+if __name__ == '__main__':
+    notifi()
             
 
