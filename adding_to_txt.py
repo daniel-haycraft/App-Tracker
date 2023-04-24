@@ -65,7 +65,7 @@ def on_submit():
         e7.delete(0, "end")
         
         c_date = date.today()
-        f.write(str(c_date)+', ')
+        f.write(str(c_date))
 
 
 button = tk.Button(top, text="Save", command=on_submit)

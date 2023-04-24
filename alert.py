@@ -6,6 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import os
 import time
+
 def email(msg):
 # Email content
     sender_email = os.environ['RECIPIENT_EMAIL']
@@ -62,10 +63,13 @@ def notifi():
         for res in result:
             date_str = res['date'].strip()
             my_dates = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
-            time_change = datetime.timedelta(days=3)
-            check_time = my_dates + time_change
-            if check_time == tdy:
-                mes +=  f" \n COMPANY: {res['name']}, \n REC URL:{res['url_rec']}, \n NAME REC: {res['name_rec']}, \n APPLICATION URL: {res['url']},\n POSITION: {res['position']} \n "
+            time_changes = [datetime.timedelta(days=3), datetime.timedelta(days=6),
+            datetime.timedelta(days=9), datetime.timedelta(days=12)]
+
+            for i, time_change in enumerate(time_changes):
+                check_date = my_dates + time_change
+                if check_date == tdy:
+                    mes +=  f" \n COMPANY: {res['name']}, \n REC URL:{res['url_rec']}, \n NAME REC: {res['name_rec']}, \n APPLICATION URL: {res['url']},\n POSITION: {res['position']} \n "
         if mes:
             email(mes)
             notification.notify(title='Linkedin', 
