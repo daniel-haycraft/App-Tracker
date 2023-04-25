@@ -75,10 +75,9 @@ def notifi():
             notification.notify(title='Linkedin', 
             message='Check Email for Linkedin Reminders!!!',
             app_name="My Apps",
-            app_icon='icons8-star-wars-naboo-ship-48.icns'
             )
-            time.sleep(86400)
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     notifi()
-            
+
 
