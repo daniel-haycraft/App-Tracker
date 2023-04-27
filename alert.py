@@ -6,12 +6,24 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import os
 import time
+import subprocess
+
+# Replace <path-to-script> with the actual path to your shell script
+import subprocess
+
+# Replace <path-to-script> with the actual path to your shell script
+process = subprocess.Popen(['bash', '-c', 'source /Users/danielhaycraft/Desktop/my_program/config.sh && env'], stdout=subprocess.PIPE)
+output, error = process.communicate()
+if process.returncode != 0:
+    raise ValueError(f"Failed to execute ")
+env = dict(line.split('=', 1) for line in output.decode().split('\n') if line)
+
 
 def email(msg):
 # Email content
-    sender_email = os.environ['RECIPIENT_EMAIL']
-    sender_password = os.environ['SENDER_PASSWORD']
-    recipient_email = os.environ['RECIPIENT_EMAIL']
+    sender_email = env['RECIPIENT_EMAIL']
+    sender_password = env['SENDER_PASSWORD']
+    recipient_email = env['RECIPIENT_EMAIL']
     subject = 'Follow Ups'
     body = f'{msg}'
     # Create message container
@@ -38,6 +50,7 @@ def email(msg):
 
     # Disconnect from SMTP server
     smtp_connection.quit()
+
 def notifi():
     mes = ''
     tdy = datetime.date.today()
@@ -69,7 +82,7 @@ def notifi():
             for i, time_change in enumerate(time_changes):
                 check_date = my_dates + time_change
                 if check_date == tdy:
-                    mes +=  f" \n COMPANY: {res['name']}, \n REC URL:{res['url_rec']}, \n NAME REC: {res['name_rec']}, \n APPLICATION URL: {res['url']},\n POSITION: {res['position']} \n "
+                    mes +=  f" \n COMPANY: {res['name']}, \n REC URL:{res['url_rec']}, \n NAME REC: {res['name_rec']}, \n APPLICATION URL: {res['url']},\n POSITION: {res['position']} \n {res['date']}\n "
         if mes:
             email(mes)
             notification.notify(title='Linkedin', 
@@ -77,7 +90,6 @@ def notifi():
             app_name="My Apps",
             )
 
-if __name__ == "__main__":
-    notifi()
 
 
+notifi()
